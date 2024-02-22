@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
+from forms import MessageForm
 
 app = Flask(__name__)
-app.config['SECTRET_KEY'] = 'SECRET123'
+app.config['SECRET_KEY'] = 'SECRET123'
 socketio = SocketIO(app, cors_allowed_origins="*")
 # instantiate socketio and bind it to the app. allow cross origin. 
 
@@ -17,9 +18,11 @@ def handle_message(message):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    form = MessageForm()
+
+    return render_template('index.html', form=form)
 
 if __name__ == "__main__":
     # to connect it to local area networks
-    socketio.run(app, host="http://localhost:5000", debug=True)
+    socketio.run(app, host="localhost", debug=True)
 
