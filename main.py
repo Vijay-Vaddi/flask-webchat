@@ -21,5 +21,5 @@ def index():
 
 if __name__ == "__main__":
     # to connect it to local area networks
-    socketio.run(app, host="localhost", debug=True)
+    socketio.run(app, host="http://localhost:5000", debug=True)
 
